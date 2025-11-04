@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Franguitos — Crocância que fala por si</title>
+  <meta name="description" content="Site institucional da marca Franguitos: nossos produtos, histórico, contatos e links para Instagram e WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#ff6a00; /* laranja principal */
+      --brand2:#ff8f3c; /* laranja claro */
+      --ink:#0f0f0f;   /* preto grafite */
+      --bg:#0a0a0a;    /* fundo quase preto */
+      --card:#121212;  /* cards */
+      --muted:#cfcfcf;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:#fff; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:inherit; text-decoration:none}
+
+    /* ===== Topbar compacta (flutuante, não ocupa largura inteira) ===== */
+    .topbar{position:sticky; top:12px; z-index:50; padding:0 10px;}
+    .navwrap{max-width:1120px; margin:0 auto;}
+    .navpill{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:8px 12px; border-radius:14px; background:rgba(12,12,12,.82); border:1px solid rgba(255,255,255,.08); box-shadow:0 12px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04); backdrop-filter:saturate(140%) blur(6px);}
+    .logo{display:flex; align-items:center; gap:10px}
+    .logo-badge{width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg, var(--brand), var(--brand2)); display:grid; place-items:center; box-shadow:0 6px 20px rgba(255,106,0,.25)}
+    .logo-badge svg{width:20px; height:20px}
+    .brand{font-family:Montserrat, sans-serif; font-weight:800; letter-spacing:.4px; font-size:14px}
+    .tagline{font-size:11px; opacity:.7; margin-top:-2px}
+
+    nav ul{display:flex; gap:12px; list-style:none; padding:0; margin:0}
+    nav a{padding:8px 10px; border-radius:10px; opacity:.9; font-size:14px}
+    nav a:hover{background:rgba(255,255,255,.06); opacity:1}
+
+    .cta{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#111; padding:8px 12px; border-radius:10px; font-weight:800; box-shadow:0 10px 30px rgba(255,106,0,.25); font-size:14px}
+    .cta svg{width:16px; height:16px}
+    .ghost{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#151515; font-size:14px}
+
+    .hamb{display:none}
+
+    /* ===== Hero ===== */
+    .hero{position:relative; overflow:hidden;}
+    .hero .wrap{max-width:1120px; margin:0 auto; padding:88px 20px 56px}
+    .hero h1{font-family:Montserrat, sans-serif; font-size:clamp(26px, 4.2vw, 50px); line-height:1.05; margin:0 0 14px}
+    .hero p{max-width:720px; color:#eaeaea; font-size:clamp(14px,1.6vw,18px)}
+    .hero .actions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap}
+    .badge{display:inline-flex; align-items:center; gap:8px; background:rgba(255,106,0,.12); color:#ffd4b3; padding:6px 10px; border:1px solid rgba(255,106,0,.25); border-radius:999px; font-weight:700; font-size:12px}
+
+    /* ===== Sections ===== */
+    section{padding:48px 0;}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+    .title{font-family:Montserrat, sans-serif; font-size:26px; margin:0 0 12px}
+    .subtitle{color:#d7d7d7; margin-top:0}
+
+    /* ===== Produtos ===== */
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .thumb{aspect-ratio: 4/3; background:linear-gradient(135deg, rgba(255,106,0,.25), rgba(255,255,255,.05)); display:grid; place-items:center; font-size:42px}
+    .card .content{padding:14px}
+    .pill{display:inline-block; font-size:12px; opacity:.85; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12)}
+    .kicker{color:#ffbe94; font-weight:700; letter-spacing:.3px; font-size:12px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:9px 11px; border-radius:10px; background:#1b1b1b; border:1px solid rgba(255,255,255,.1); font-size:14px}
+    .btn:hover{background:#222}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#111; border:none}
+
+    /* ===== Histórico ===== */
+    .history{display:grid; grid-template-columns: 1.2fr .8fr; gap:20px}
+    .history .block{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:16px}
+
+    /* ===== Contato ===== */
+    .contact{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .contact .panel{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:16px}
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* ===== Footer com links rápidos ===== */
+    footer{padding:26px 0 36px; background:#0b0b0b; border-top:1px solid rgba(255,255,255,.06); margin-top:6px}
+    .foot{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center}
+    .foot .right{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .small{color:#cfcfcf; opacity:.75; font-size:13px}
+
+    /* ===== Mobile ===== */
+    @media (max-width: 920px){
+      nav ul{display:none}
+      .hamb{display:inline-flex; padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:#151515}
+      .grid{grid-template-columns:1fr 1fr}
+      .history{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .navpill{padding:8px 10px}
+    }
+    @media (max-width: 580px){
+      .grid{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+    }
+
+    /* ===== Menu mobile modal ===== */
+    .mobile-menu{display:none; position:fixed; inset:80px 12px 12px; background:#0f0f0f; border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:10px; z-index:60; box-shadow:0 18px 50px rgba(0,0,0,.55)}
+    .mobile-menu a{display:block; padding:12px; border-radius:12px; font-size:16px}
+    .mobile-menu a:hover{background:rgba(255,255,255,.06)}
+    .overlay{display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:55}
+  </style>
+</head>
+<body data-instagram="https://instagram.com/oficialfranguitos" data-whatsapp="5591999999999">
+  <!-- Header compacto -->
+  <header class="topbar">
+    <div class="navwrap">
+      <div class="navpill">
+        <div class="logo">
+          <div class="logo-badge" aria-hidden="true">
+            <!-- frango ícone -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 10c0-2.8 2.4-5 5.3-5 2.7 0 4.9 1.9 5.3 4.3 1.5.5 2.6 2 2.6 3.7 0 2.2-1.8 4-4 4H8.5C6.6 17 5 15.4 5 13.5c0-1.5.9-2.8 2.1-3.3-.1-.3-.1-.5-.1-.8Z" fill="#111"/>
+              <circle cx="9.2" cy="9" r="1" fill="#111"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand">FRANGUITOS</div>
+            <div class="tagline">Crocância que fala por si</div>
+          </div>
+        </div>
+
+        <!-- Desktop: poucos itens -->
+        <nav aria-label="Principal">
+          <ul>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a class="cta" id="ctaWpp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.1 18.8L2 22l3.3-1.1A11 11 0 0 0 22 11C22 7.8 20.7 5 18.5 3.5Zm-7.4 15.9c-1.9 0-3.6-.6-5-1.6l-.4-.3-3 .9.9-2.9-.3-.5a8.4 8.4 0 1 1 7.8 4.4ZM16.8 14c-.2-.1-1.3-.6-1.5-.6-.2 0-.4-.1-.6.2-.2.2-.6.6-.7.8-.1.1-.3.2-.6.1-1.6-.6-2.8-1.7-3.6-3.2-.3-.4 0-.5.2-.7.2-.2.3-.4.5-.5l.2-.3c.1-.2.1-.4 0-.6 0-.1-.6-1.5-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.6 0 1.5 1.2 2.9 1.4 3.1.2.3 2.3 3.5 5.6 4.7.8.3 1.4.5 1.9.6.8.3 1.5.2 2 .1.6-.1 1.3-.6 1.5-1.2.2-.6.2-1.1.1-1.2-.1-.2-.2-.2-.5-.3Z"/></svg>
+              WhatsApp</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botão hamburger (mobile) -->
+        <button class="hamb" id="hamb" aria-label="Abrir menu">☰</button>
+      </div>
+    </div>
+
+    <!-- Overlay e Menu Mobile -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+      <a href="#produtos" onclick="closeMenu()">Produtos</a>
+      <a href="#historico" onclick="closeMenu()">Histórico</a>
+      <a href="#contato" onclick="closeMenu()">Contato</a>
+      <a href="#" id="ctaWppMobile">Fale no WhatsApp</a>
+      <a href="#" id="ctaInstaMobile">Siga no Instagram</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">Novo cardápio • 6 produtos</span>
+      <h1>Frango crocante, crepes e muito mais — <span style="color:var(--brand)">aquele sabor de respeito</span>.</h1>
+      <p>Do clássico balde de frango crocante aos nossos crepes doces e salgados, passando pelo burger de frango e os molhos que viram assunto. Peça pelo WhatsApp ou acompanhe as novidades no Instagram.</p>
+      <div class="actions">
+        <a class="cta" id="ctaInsta">
+          <!-- Instagram icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 3.7a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 2a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6Zm5.7-.9a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+          Siga no Instagram
+        </a>
+        <a class="ghost" id="ctaWpp2">Pedir no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produtos -->
+  <section id="produtos">
+    <div class="wrap">
+      <h2 class="title">Nossos produtos</h2>
+      <p class="subtitle">Seis campeões de vendas, feitos na hora, com crocância absurda. ✨</p>
+      <div class="grid">
+        <!-- 1 Frango crocante -->
+        <article class="card">
+          <div class="thumb">🍗</div>
+          <div class="content">
+            <div class="kicker">Clássico da casa</div>
+            <h3 style="margin:.25rem 0 0">Porções de frango crocante</h3>
+            <p style="opacity:.9">Tiras suculentas por fora e macias por dentro. Acompanha molho.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">P, M e G</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+        <!-- 2 Balde -->
+        <article class="card">
+          <div class="thumb">🍗🍗</div>
+          <div class="content">
+            <div class="kicker">Pra compartilhar</div>
+            <h3 style="margin:.25rem 0 0">Balde de frango</h3>
+            <p style="opacity:.9">Perfeito pra galera. Combina com batata crocante e maioneses especiais.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">Serve até 4</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+        <!-- 3 Burger crocante -->
+        <article class="card">
+          <div class="thumb">🍔</div>
+          <div class="content">
+            <div class="kicker">Sanduíche</div>
+            <h3 style="margin:.25rem 0 0">Burger de frango crocante</h3>
+            <p style="opacity:.9">Pão macio, filé crocante, queijo e nosso molho da casa. Irresistível.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">Combo opcional</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+        <!-- 4 Crepes doces e salgados -->
+        <article class="card">
+          <div class="thumb">🥞</div>
+          <div class="content">
+            <div class="kicker">Doce & Salgado</div>
+            <h3 style="margin:.25rem 0 0">Crepes</h3>
+            <p style="opacity:.9">Recheios clássicos e autorais, com massa leve e crocante na borda.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">Vários sabores</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+        <!-- 5 Pastéis -->
+        <article class="card">
+          <div class="thumb">🥟</div>
+          <div class="content">
+            <div class="kicker">Estalando</div>
+            <h3 style="margin:.25rem 0 0">Pastéis</h3>
+            <p style="opacity:.9">Massa fininha, muito recheio e aquela crocância que fala por si.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">Doces e salgados</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+        <!-- 6 Batata + molhos -->
+        <article class="card">
+          <div class="thumb">🍟</div>
+          <div class="content">
+            <div class="kicker">Acompanhamentos</div>
+            <h3 style="margin:.25rem 0 0">Batata crocante & molhos</h3>
+            <p style="opacity:.9">Batatinhas sequinhas com seleção de maioneses especiais e geleia de pimenta.</p>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px">
+              <span class="pill">Combina com tudo</span>
+              <a class="btn primary wpp-order">Pedir no WhatsApp</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Histórico / Institucional -->
+  <section id="historico">
+    <div class="wrap">
+      <h2 class="title">Nosso histórico</h2>
+      <p class="subtitle">Começamos com um balde de ideias e terminamos com uma família de fãs. Conheça nossa trajetória.</p>
+      <div class="history">
+        <div class="block">
+          <h3>De barraquinha a point da crocância</h3>
+          <p>O Franguitos nasceu da paixão por frango crocante feito na hora. Em pouco tempo, o que era um pequeno ponto de venda virou parada obrigatória da região. Crescemos sem abrir mão do padrão: frango suculento por dentro, casquinha crocante por fora e molhos próprios.</p>
+          <p>Hoje, além das porções, temos burger de frango, crepes (doces e salgados), pastéis e acompanhamentos — tudo com o nosso toque.</p>
+        </div>
+        <div class="block">
+          <h3>Compromissos</h3>
+          <ul style="line-height:1.9; margin:0; padding-left:18px">
+            <li>Ingredientes selecionados e preparo na hora</li>
+            <li>Equipe treinada e atendimento rápido</li>
+            <li>Novidades e promoções semanais pelo Instagram</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato">
+    <div class="wrap">
+      <h2 class="title">Contato & Links</h2>
+      <p class="subtitle">Ficou com vontade? Chama no WhatsApp ou acompanha a gente no Instagram. 📲</p>
+      <div class="contact">
+        <div class="panel">
+          <h3>WhatsApp</h3>
+          <p>Faça seu pedido, tire dúvidas e consulte promoções do dia.</p>
+          <a class="cta" id="ctaWpp3">Abrir conversa no WhatsApp</a>
+          <p class="small" style="margin-top:10px; opacity:.7">Dica: adicione o número aos favoritos para ver os <em>status</em> com novidades.</p>
+        </div>
+        <div class="panel">
+          <h3>Instagram</h3>
+          <p>Novos sabores, bastidores e sorteios. Segue lá:</p>
+          <div class="socials">
+            <a class="btn" id="ctaInsta2">@oficialfranguitos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="logo" style="gap:10px">
+        <div class="logo-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10c0-2.8 2.4-5 5.3-5 2.7 0 4.9 1.9 5.3 4.3 1.5.5 2.6 2 2.6 3.7 0 2.2-1.8 4-4 4H8.5C6.6 17 5 15.4 5 13.5c0-1.5.9-2.8 2.1-3.3-.1-.3-.1-.5-.1-.8Z" fill="#111"/><circle cx="9.2" cy="9" r="1" fill="#111"/></svg></div>
+        <div>
+          <div class="brand">FRANGUITOS</div>
+          <div class="small">© <span id="y"></span> — Todos os direitos reservados</div>
+        </div>
+      </div>
+      <div class="right">
+        <a class="ghost" href="#produtos">Produtos</a>
+        <a class="ghost" href="#historico">Histórico</a>
+        <a class="ghost" href="#contato">Contato</a>
+        <a class="cta" id="ctaWppFoot">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Configuração rápida (edite só aqui) =====
+    const INSTAGRAM_URL = document.body.dataset.instagram || 'https://instagram.com/oficialfranguitos';
+    const WHATSAPP_NUMBER = document.body.dataset.whatsapp || '5591999999999'; // DDI+DDD+numero
+    const WPP_TEXT = encodeURIComponent('Olá, quero fazer um pedido! Vim pelo site.');
+
+    function whatsappLink(){
+      return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${WPP_TEXT}`;
+    }
+
+    // Bind botões
+    function bindLinks(){
+      const wppSelectors = ['#ctaWpp', '#ctaWpp2', '#ctaWpp3', '#ctaWppMobile', '.wpp-order', '#ctaWppFoot'];
+      wppSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.addEventListener('click', () => window.open(whatsappLink(), '_blank')));
+      });
+      ['#ctaInsta', '#ctaInsta2', '#ctaInstaMobile'].forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => el.addEventListener('click', () => window.open(INSTAGRAM_URL, '_blank')));
+      });
+    }
+
+    // Menu mobile
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+    function openMenu(){
+      mobileMenu.style.display = 'block';
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      mobileMenu.style.display = 'none';
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.getElementById('hamb').addEventListener('click', openMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Init
+    bindLinks();
+  </script>
+</body>
+</html>
